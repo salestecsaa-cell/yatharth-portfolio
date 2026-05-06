@@ -2,7 +2,7 @@ import "./styles/About.css";
 import { useState } from "react";
 
 const About = () => {
-  const [activeTooltip, setActiveTooltip] = useState(null);
+  const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
 
   const badges = [
     {
