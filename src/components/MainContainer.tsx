@@ -11,7 +11,7 @@ import Work from "./Work";
 import setSplitText from "./utils/splitText";
 
 const TechStack = lazy(() => import("./TechStack"));
-const VideoSection = lazy(() => import("./VideoSection/VideoSection")); // ⭐ ADD THIS LINE
+const VideoSection = lazy(() => import("./VideoSection/VideoSection"));
 
 const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
@@ -43,19 +43,17 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <About />
             <WhatIDo />
             
-            {/* ⭐ ADD VIDEO SECTION HERE - Between WhatIDo and Career */}
             <Suspense fallback={<div style={{ height: "600px" }}>Loading video...</div>}>
               <VideoSection />
             </Suspense>
-            {/* ⭐ Video Section End */}
             
             <Career />
             <Work />
-            {isDesktopView && (
-              <Suspense fallback={<div>Loading....</div>}>
-                <TechStack />
-              </Suspense>
-            )}
+            
+            <Suspense fallback={<div>Loading....</div>}>
+              <TechStack />
+            </Suspense>
+            
             <Contact />
           </div>
         </div>
