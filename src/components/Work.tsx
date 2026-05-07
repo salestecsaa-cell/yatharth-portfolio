@@ -1,65 +1,238 @@
-import "./styles/Work.css";
-import WorkImage from "./WorkImage";
+/* ── Work Section ── */
+.work-section {
+  position: relative;
+  z-index: 1;
+  background-color: var(--backgroundColor);
+  padding: 80px 0;
+}
 
-const sections = [
-  {
-    title: "",
-    items: [
-      {
-        title: "CallHQ",
-        category: "Voice AI Calling Platform",
-        tools: "Voice AI, Calling Automation, CRM Integrations",
-        image: "/images/callhq.png",
-        link: "https://drive.google.com/drive/folders/1IXUwLXBPtW-EFOHlSGsX0gtDbCD9BR4I",
-      },
-    ],
-  },
-  {
-    title: "",
-    items: [
-      {
-        title: "Whatsapp Automation",
-        category: "WABA Application",
-        tools: "WhatsApp Business API, Workflow Automation, Notifications",
-        image: "/images/whatsapp.png",
-        link: "https://drive.google.com/drive/folders/1IbOc9RgFdmxmFTveTRv8z5sbJk8kaQ1p",
-      },
-    ],
-  },
-];
+.work-section h2 {
+  font-size: 70px;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 60px;
+}
 
-const Work = () => {
-  return (
-    <div className="work-section" id="work">
-      <div className="work-container section-container">
-        <h2>
-          MY <span>WORK</span>
-        </h2>
+.work-section h2 > span {
+  color: var(--accentColor);
+}
 
-        <div className="work-grid">
-          {sections.map((section, sectionIndex) => (
-            <div key={sectionIndex} className="work-column">
-              <h3 className="section-title">{section.title}</h3>
+.work-container {
+  margin: auto;
+}
 
-              <div className="items-container">
-                {section.items.map((item, itemIndex) => (
-                  <div key={itemIndex} className="work-item">
-                    <div className="item-image">
-                      <WorkImage
-                        image={item.image}
-                        alt={item.title}
-                        link={item.link}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
+/* ── Work Grid (2 Columns) ── */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  width: 100%;
+}
 
-export default Work;
+/* ── Work Column ── */
+.work-column {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 500;
+  margin: 0;
+  color: #ffffff;
+  padding-bottom: 20px;
+}
+
+/* ── Items Container ── */
+.items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Individual Work Item ── */
+.work-item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.work-item:hover {
+  transform: translateY(-4px);
+}
+
+/* ── Item Image Container (16:9 Aspect Ratio) ── */
+.item-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.item-image .work-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.work-item:hover .item-image img {
+  transform: scale(1.03);
+}
+
+/* ── Work Image Reuse ── */
+.work-image {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.work-image-in {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.work-link {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: var(--backgroundColor);
+  width: 50px;
+  border-radius: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5),
+    inset 0px 0px 10px 0px #393939;
+  transition: 0.3s;
+  opacity: 0;
+  z-index: 5;
+}
+
+.work-image a:hover {
+  color: inherit;
+}
+
+.work-image a:hover .work-link {
+  opacity: 1;
+}
+
+.work-image video {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.work-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ── Responsive Design ── */
+@media only screen and (max-width: 1400px) {
+  .work-grid {
+    gap: 50px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .item-image {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .work-section h2 {
+    font-size: 50px;
+    margin-bottom: 50px;
+  }
+
+  .work-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .item-image {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .work-section {
+    padding: 50px 0;
+  }
+
+  .work-section h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    padding-bottom: 16px;
+  }
+
+  .items-container {
+    gap: 30px;
+  }
+
+  .work-item {
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+
+  .item-image {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .work-section {
+    padding: 40px 0;
+  }
+
+  .work-section h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .items-container {
+    gap: 25px;
+  }
+
+  .item-image {
+    aspect-ratio: 16 / 9;
+  }
+}
