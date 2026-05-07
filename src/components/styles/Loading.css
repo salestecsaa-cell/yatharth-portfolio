@@ -411,3 +411,11 @@
     font-size: 18px;
   }
 }
+.loader-profile-img {
+  width: 32px;              /* Mobile */
+  height: 32px;
+  border-radius: 50%;       /* Circular */
+  object-fit: cover;
+}
+
+/* Tablet: 36px, Desktop: 40px (responsive) */
