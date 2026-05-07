@@ -41,7 +41,7 @@
   font-weight: 500;
   margin: 0;
   color: #ffffff;
-  padding-bottom: 0px;
+  padding-bottom: -50px;
 }
 
 /* ── Items Container ── */
@@ -67,7 +67,7 @@
 .item-image {
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin-top: 0px;
+  margin-top: -50px;
   border-radius: 8px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3);
