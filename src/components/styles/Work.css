@@ -67,7 +67,7 @@
 .item-image {
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin-top: 12px;
+  margin-top: 0px;
   border-radius: 8px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3);
@@ -166,7 +166,7 @@
 @media only screen and (max-width: 1024px) {
   .work-section h2 {
     font-size: 50px;
-    margin-bottom: 0px;
+    margin-bottom: 50px;
   }
   .work-grid {
     grid-template-columns: 1fr;
