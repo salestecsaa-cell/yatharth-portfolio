@@ -46,6 +46,8 @@
   letter-spacing: 0.2px;
   display: flex;
   align-items: center;
+  padding: 0;
+  margin: 0;
 }
 .navbar-logo {
   width: 45px;
@@ -54,6 +56,9 @@
   object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 .navbar-logo:hover {
   transform: scale(1.05);
