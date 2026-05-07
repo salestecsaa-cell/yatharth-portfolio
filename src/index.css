@@ -2,7 +2,6 @@
 
 :root {
   font-family: "Geist", sans-serif;
-
   font-optical-sizing: auto;
   font-style: normal;
   line-height: 1.5;
@@ -10,7 +9,6 @@
   color-scheme: light dark;
   color: #eae5ec;
   background-color: var(--backgroundColor);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -103,18 +101,9 @@ body {
   flex-wrap: nowrap;
 }
 
-.techstack {
-  width: 100%;
-  position: relative;
-  overflow: visible;
-  height: auto;
-  min-height: 400px;
-  margin: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  padding: 40px 20px;
-  display: block;
-}
+/* ════════════════════════════════════════ */
+/* TECHSTACK SECTION - CLEAN & SIMPLE */
+/* ════════════════════════════════════════ */
 
 .techstack {
   width: 100%;
@@ -140,7 +129,7 @@ body {
   text-transform: uppercase;
   margin-bottom: 60px;
   margin-top: 0;
-  letter-spacing: -2px;
+  line-height: 1.2;
 }
 
 .tech-accent {
@@ -188,20 +177,20 @@ body {
   .techstack {
     height: auto !important;
     overflow: visible !important;
-    min-height: auto;
-    padding: 40px 16px;
-    margin: 20px auto;
+    min-height: 350px;
+    padding: 30px 20px;
+    margin: 20px 0;
     display: block;
   }
 
   .techstack h2 {
-    font-size: 26px;
+    font-size: 28px;
     position: static;
     top: auto;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     margin-top: 0;
     text-align: center;
-    line-height: 1.3;
+    line-height: 1.2;
   }
 
   .tech-canvas {
@@ -212,9 +201,14 @@ body {
   }
 }
 
+/* ════════════════════════════════════════ */
+/* REST OF STYLES */
+/* ════════════════════════════════════════ */
+
 .section-container {
   width: 1300px;
 }
+
 .title,
 .para {
   font-kerning: none;
@@ -223,17 +217,20 @@ body {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
+
 @media only screen and (max-width: 1600px) {
   .section-container {
     width: 1200px;
     max-width: calc(100% - 160px);
   }
 }
+
 @media only screen and (max-width: 1400px) {
   .section-container {
     width: 900px;
   }
 }
+
 @media only screen and (max-width: 900px) {
   .section-container {
     width: 500px;
