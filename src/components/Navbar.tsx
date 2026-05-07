@@ -46,7 +46,7 @@ const Navbar = () => {
           YS
         </a>
         <a
-          href="https://www.upwork.com/freelancers/yatharth114/"
+          href="Connect on Upwork"
           className="navbar-connect"
           data-cursor="disable"
           target="_blank"
