@@ -26,9 +26,9 @@ const Loading = ({ percent }: { percent: number }) => {
 
         setIsLoaded(true);
 
-      }, 1000);
+      }, 300); // REDUCED: 1000ms → 300ms
 
-    }, 600);
+    }, 300); // REDUCED: 600ms → 300ms
 
   }
 
@@ -50,7 +50,7 @@ const Loading = ({ percent }: { percent: number }) => {
 
           setIsLoading(false);
 
-        }, 900);
+        }, 400); // REDUCED: 900ms → 400ms
 
       }
 
@@ -180,7 +180,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
 
     if (percent <= 50) {
 
-      let rand = Math.round(Math.random() * 5);
+      let rand = Math.round(Math.random() * 8); // INCREASED: 5 → 8 for faster progress
 
       percent = percent + rand;
 
@@ -192,7 +192,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
 
       interval = setInterval(() => {
 
-        percent = percent + Math.round(Math.random());
+        percent = percent + Math.round(Math.random() * 2); // INCREASED: 1 → 2 for faster progress
 
         setLoading(percent);
 
@@ -202,11 +202,11 @@ export const setProgress = (setLoading: (value: number) => void) => {
 
         }
 
-      }, 2000);
+      }, 800); // REDUCED: 2000ms → 800ms
 
     }
 
-  }, 100);
+  }, 50); // REDUCED: 100ms → 50ms for faster updates
 
   function clear() {
 
@@ -238,7 +238,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
 
         }
 
-      }, 2);
+      }, 1); // REDUCED: 2ms → 1ms for instant completion
 
     });
 
