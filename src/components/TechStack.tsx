@@ -128,6 +128,13 @@ const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
+    // Set active by default to show content on mobile
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      setIsActive(true);
+      return;
+    }
+
     const handleScroll = () => {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
       const threshold = document
