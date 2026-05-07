@@ -16,7 +16,7 @@ const Contact = () => {
                 rel="noreferrer"
                 data-cursor="disable"
               >
-                +91 87707 94512
+                +91 877 079 4512
               </a>
             </p>
             <h4>Location</h4>
@@ -45,7 +45,7 @@ const Contact = () => {
               Call <MdArrowOutward />
             </a>
             <a
-              href="https://wa.me/918770794152"
+              href="https://wa.me/918770794512"
               target="_blank"
               rel="noreferrer"
               data-cursor="disable"
