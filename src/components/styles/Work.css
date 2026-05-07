@@ -153,7 +153,7 @@
 /* ── Responsive Design ── */
 @media only screen and (max-width: 1400px) {
   .work-grid {
-    gap: 0px;
+    gap: -200px;
   }
   .section-title {
     font-size: 28px;
@@ -166,11 +166,11 @@
 @media only screen and (max-width: 1024px) {
   .work-section h2 {
     font-size: 50px;
-    margin-bottom: 0px;
+    margin-bottom: -200px;
   }
   .work-grid {
     grid-template-columns: 1fr;
-    gap: 60px;
+    gap: 0px;
   }
   .section-title {
     font-size: 26px;
@@ -196,11 +196,11 @@
   }
   
   .items-container {
-    gap: 8px;
+    gap: 0px;
   }
   
   .work-item {
-    gap: 8px;
+    gap: 0px;
     padding-bottom: 0px;
   }
   
@@ -226,11 +226,11 @@
   }
   
   .items-container {
-    gap: 6px;
+    gap: 0px;
   }
   
   .work-item {
-    gap: 6px;
+    gap: 0px;
     padding-bottom: 0px;
   }
   
