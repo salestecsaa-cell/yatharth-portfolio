@@ -31,7 +31,8 @@ const About = () => {
         <h3 className="title">About Me</h3>
         <p className="para">
           Ranked among the top 3% of freelancers globally and a Top Rated Plus freelancer on Upwork, I specialize in creating scroll-stopping images and videos that not only look visually stunning but are designed to make an impact.
-          <br></br><br></br>
+        </p>
+        <p className="para">
           With over 9 years of experience as an Adobe Certified Expert, I've helped more than 200 brands across 30 industries with high-converting designs.
         </p>
 
