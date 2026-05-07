@@ -166,7 +166,7 @@
 @media only screen and (max-width: 1024px) {
   .work-section h2 {
     font-size: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
   }
   .work-grid {
     grid-template-columns: 1fr;
@@ -182,17 +182,17 @@
 
 @media only screen and (max-width: 768px) {
   .work-section {
-    padding: 40px 0;
+    padding: 0px 0;
   }
   
   .work-section h2 {
     font-size: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
   
   .section-title {
     font-size: 18px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
   }
   
   .items-container {
@@ -206,7 +206,7 @@
   
   .item-image {
     aspect-ratio: 16 / 9;
-    margin-top: 6px;
+    margin-top: 0px;
   }
 }
 
@@ -217,7 +217,7 @@
   
   .work-section h2 {
     font-size: 26px;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
   }
   
   .section-title {
@@ -231,11 +231,11 @@
   
   .work-item {
     gap: 6px;
-    padding-bottom: 6px;
+    padding-bottom: 0px;
   }
   
   .item-image {
     aspect-ratio: 16 / 9;
-    margin-top: 4px;
+    margin-top: 0px;
   }
 }
