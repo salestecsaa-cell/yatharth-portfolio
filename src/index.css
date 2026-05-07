@@ -142,21 +142,29 @@ body {
 
 @media screen and (max-width: 768px) {
   .techstack {
-    height: auto;
-    padding: 80px 20px;
+    height: auto !important;
+    padding: 60px 20px;
     margin: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    overflow: visible;
+    display: block;
   }
   
   .techstack h2 {
-    font-size: 32px;
-    position: relative;
-    top: 0;
-    margin-bottom: 60px;
+    font-size: 28px;
+    position: static;
+    top: auto;
+    margin-bottom: 40px;
+    margin-top: 0;
+    width: 100%;
   }
   
   .tech-canvas {
-    height: 400px !important;
+    display: block !important;
+    width: 100% !important;
+    height: 350px !important;
+    margin: 0 auto;
   }
 }
