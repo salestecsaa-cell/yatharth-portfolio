@@ -5,22 +5,18 @@
   background-color: var(--backgroundColor);
   padding: 80px 0;
 }
-
 .work-section h2 {
   font-size: 70px;
   font-weight: 500;
   margin-top: 0;
   margin-bottom: 60px;
 }
-
 .work-section h2 > span {
   color: var(--accentColor);
 }
-
 .work-container {
   margin: auto;
 }
-
 /* ── Work Grid (2 Columns) ── */
 .work-grid {
   display: grid;
@@ -28,30 +24,25 @@
   gap: 60px;
   width: 100%;
 }
-
 /* ── Work Column ── */
 .work-column {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-
 .section-title {
   font-size: 32px;
   font-weight: 500;
   margin: 0;
   color: #ffffff;
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 /* ── Items Container ── */
 .items-container {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
-
 /* ── Individual Work Item ── */
 .work-item {
   display: flex;
@@ -59,11 +50,9 @@
   gap: 20px;
   transition: all 0.3s ease;
 }
-
 .work-item:hover {
   transform: translateY(-4px);
 }
-
 /* ── Item Image Container (16:9 Aspect Ratio) ── */
 .item-image {
   width: 100%;
@@ -73,7 +62,6 @@
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3);
 }
-
 .item-image .work-image {
   width: 100%;
   height: 100%;
@@ -81,7 +69,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .item-image img {
   width: 100%;
   height: 100%;
@@ -89,11 +76,9 @@
   border-radius: 8px;
   transition: transform 0.3s ease;
 }
-
 .work-item:hover .item-image img {
   transform: scale(1.03);
 }
-
 /* ── Work Image Reuse ── */
 .work-image {
   display: flex;
@@ -102,13 +87,11 @@
   justify-content: center;
   align-items: center;
 }
-
 .work-image-in {
   position: relative;
   width: 100%;
   height: 100%;
 }
-
 .work-link {
   position: absolute;
   bottom: 10px;
@@ -127,15 +110,12 @@
   opacity: 0;
   z-index: 5;
 }
-
 .work-image a:hover {
   color: inherit;
 }
-
 .work-image a:hover .work-link {
   opacity: 1;
 }
-
 .work-image video {
   width: 100%;
   height: 100%;
@@ -143,96 +123,77 @@
   object-fit: cover;
   border-radius: 8px;
 }
-
 .work-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
 }
-
 /* ── Responsive Design ── */
 @media only screen and (max-width: 1400px) {
   .work-grid {
     gap: 50px;
   }
-
   .section-title {
     font-size: 28px;
   }
-
   .item-image {
     aspect-ratio: 16 / 9;
   }
 }
-
 @media only screen and (max-width: 1024px) {
   .work-section h2 {
     font-size: 50px;
     margin-bottom: 50px;
   }
-
   .work-grid {
     grid-template-columns: 1fr;
     gap: 60px;
   }
-
   .section-title {
     font-size: 26px;
   }
-
   .item-image {
     aspect-ratio: 16 / 9;
   }
 }
-
 @media only screen and (max-width: 768px) {
   .work-section {
     padding: 50px 0;
   }
-
   .work-section h2 {
     font-size: 40px;
     margin-bottom: 40px;
   }
-
   .section-title {
     font-size: 22px;
     padding-bottom: 16px;
   }
-
   .items-container {
     gap: 30px;
   }
-
   .work-item {
     gap: 16px;
     padding-bottom: 24px;
   }
-
   .item-image {
     aspect-ratio: 16 / 9;
   }
 }
-
 @media only screen and (max-width: 480px) {
   .work-section {
     padding: 40px 0;
   }
-
   .work-section h2 {
     font-size: 32px;
     margin-bottom: 30px;
   }
-
   .section-title {
     font-size: 18px;
   }
-
   .items-container {
     gap: 25px;
   }
-
   .item-image {
     aspect-ratio: 16 / 9;
   }
