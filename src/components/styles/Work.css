@@ -67,7 +67,7 @@
 .item-image {
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin-top: 0px;
+  margin-top: -20px;
   border-radius: 8px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3);
