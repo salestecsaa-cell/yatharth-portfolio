@@ -127,7 +127,7 @@ const SocialIcons = () => {
         target="_blank"
         rel="noreferrer"
       >
-        <HoverLinks text="PROTFOLIO" />
+        <HoverLinks text="PORTFOLIO" />
         <span>
           <TbNotes />
         </span>
