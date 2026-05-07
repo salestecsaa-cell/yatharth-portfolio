@@ -141,7 +141,7 @@
   }
 
   .video-wrapper {
-    margin: 0 15px;
+    margin: 0 auto;
   }
 
   .video-iframe {
@@ -162,8 +162,12 @@
     font-size: 14px;
   }
 
+  .video-content {
+    padding: 0 15px;
+  }
+
   .video-wrapper {
-    margin: 0 10px;
+    margin: 0 auto;
   }
 
   .video-iframe {
