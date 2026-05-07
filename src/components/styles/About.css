@@ -26,10 +26,10 @@
 }
 
 .about-me p {
-  font-size: 33px;
+  font-size: 18px;
   font-weight: 600;
-  line-height: 36px;
-  letter-spacing: 1px;
+  line-height: 26px;
+  letter-spacing: 0.5px;
 }
 
 .badges-section {
@@ -204,15 +204,15 @@
     width: 50%;
   }
   .about-me p {
-    font-size: 1.9vw;
-    line-height: 2.3vw;
+    font-size: 1.3vw;
+    line-height: 1.8vw;
   }
 }
 
 @media only screen and (min-width: 1950px) {
   .about-me p {
-    font-size: 2.5rem;
-    line-height: 2.7rem;
+    font-size: 1.8rem;
+    line-height: 2.2rem;
   }
 }
 
