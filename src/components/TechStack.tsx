@@ -125,24 +125,28 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
 }
 
 const TechStack = () => {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(true);
 
   useEffect(() => {
-    // Set active by default to show content on mobile
+    // Always show on mobile
     const isMobile = window.innerWidth <= 768;
+    setIsActive(true);
+
     if (isMobile) {
-      setIsActive(true);
       return;
     }
 
     const handleScroll = () => {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+      const workElement = document.getElementById("work");
+      if (workElement) {
+        const threshold = workElement.getBoundingClientRect().top;
+        setIsActive(scrollY > threshold);
+      }
     };
-    document.querySelectorAll(".header a").forEach((elem) => {
+
+    const headerLinks = document.querySelectorAll(".header a");
+    headerLinks.forEach((elem) => {
       const element = elem as HTMLAnchorElement;
       element.addEventListener("click", () => {
         const interval = setInterval(() => {
@@ -153,11 +157,13 @@ const TechStack = () => {
         }, 1000);
       });
     });
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const materials = useMemo(() => {
     return textures.map(
       (texture) =>
@@ -183,7 +189,7 @@ const TechStack = () => {
         camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
         onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
         className="tech-canvas"
-        style={{ width: '100%', height: 'auto', minHeight: '400px' }}
+        style={{ width: '100%', height: 'auto', minHeight: '350px' }}
       >
         <ambientLight intensity={1} />
         <spotLight
