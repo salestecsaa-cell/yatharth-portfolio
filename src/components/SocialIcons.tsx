@@ -123,11 +123,11 @@ const SocialIcons = () => {
       </div>
       <a
         className="resume-button"
-        href="https://www.upwork.com/freelancers/~011f837a11249f47be"
+        href="https://drive.google.com/drive/folders/155HuLzXQQraRowOu8pG2a2KW0cpD2MCU"
         target="_blank"
         rel="noreferrer"
       >
-        <HoverLinks text="RESUME" />
+        <HoverLinks text="PROTFOLIO" />
         <span>
           <TbNotes />
         </span>
