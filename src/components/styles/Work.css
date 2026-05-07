@@ -41,7 +41,7 @@
   font-weight: 500;
   margin: 0;
   color: #ffffff;
-  padding-bottom: -500px;
+  padding-bottom: 0;
 }
 
 /* ── Items Container ── */
@@ -153,7 +153,7 @@
 /* ── Responsive Design ── */
 @media only screen and (max-width: 1400px) {
   .work-grid {
-    gap: -200px;
+    gap: 40px;
   }
   .section-title {
     font-size: 28px;
@@ -166,11 +166,11 @@
 @media only screen and (max-width: 1024px) {
   .work-section h2 {
     font-size: 50px;
-    margin-bottom: -200px;
+    margin-bottom: 20px;
   }
   .work-grid {
     grid-template-columns: 1fr;
-    gap: 0px;
+    gap: 30px;
   }
   .section-title {
     font-size: 26px;
@@ -200,7 +200,7 @@
   }
   
   .work-item {
-    gap: 0px;
+    gap: 8px;
     padding-bottom: 0px;
   }
   
@@ -230,7 +230,7 @@
   }
   
   .work-item {
-    gap: 0px;
+    gap: 8px;
     padding-bottom: 0px;
   }
   
