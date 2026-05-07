@@ -25,7 +25,7 @@ const Contact = () => {
             </p>
           </div>
           <div className="contact-box">
-            <h4>Connect Me</h4>
+            <h4>Contact Me</h4>
             <a
               href="https://www.upwork.com/freelancers/yatharth114/"
               target="_blank"
