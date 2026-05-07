@@ -176,6 +176,7 @@ const TechStack = () => {
         camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
         onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
         className="tech-canvas"
+        style={{ width: '100%', height: 'auto', minHeight: '400px' }}
       >
         <ambientLight intensity={1} />
         <spotLight
