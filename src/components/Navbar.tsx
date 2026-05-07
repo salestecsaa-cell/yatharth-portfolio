@@ -52,7 +52,7 @@ const Navbar = () => {
           target="_blank"
           rel="noreferrer"
         >
-          https://www.upwork.com/freelancers/yatharth114/
+          Connect on Upwork
         </a>
         <ul>
           <li>
