@@ -43,7 +43,7 @@ const Navbar = () => {
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          <img src="/images/yatharth-profile.png" alt="Yatharth" className="navbar-logo" />
+          <img src="/IMG_3183__1_.GIF" alt="Yatharth" className="navbar-logo" />
         </a>
         <a
           href="https://www.upwork.com/freelancers/yatharth114/"
