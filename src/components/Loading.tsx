@@ -82,7 +82,7 @@ const Loading = ({ percent }: { percent: number }) => {
 
         <a href="/#" className="loader-title" data-cursor="disable">
 
-          <img src="/images/yatharth-profile.png" className="loader-profile-img" />
+          <img src="/images/yatharth-profile.webp" className="loader-profile-img" />
 
         </a>
 
