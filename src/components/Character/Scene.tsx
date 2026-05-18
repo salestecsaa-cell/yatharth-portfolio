@@ -20,22 +20,64 @@ const Scene = () => {
   const { setLoading } = useLoading();
 
   const [character, setChar] = useState<THREE.Object3D | null>(null);
+  const [webglSupported, setWebglSupported] = useState(true);
+
+  // Check WebGL support
+  const checkWebGLSupport = () => {
+    try {
+      const canvas = document.createElement("canvas");
+      const gl =
+        canvas.getContext("webgl") || canvas.getContext("webgl2");
+      return !!gl;
+    } catch (e) {
+      console.warn("WebGL not supported:", e);
+      return false;
+    }
+  };
+
   useEffect(() => {
+    // Check WebGL support first
+    const hasWebGL = checkWebGLSupport();
+    if (!hasWebGL) {
+      setWebglSupported(false);
+      setLoading(false);
+      return;
+    }
+
     if (canvasDiv.current) {
       let rect = canvasDiv.current.getBoundingClientRect();
       let container = { width: rect.width, height: rect.height };
       const aspect = container.width / container.height;
       const scene = sceneRef.current;
 
-      const renderer = new THREE.WebGLRenderer({
-        alpha: true,
-        antialias: true,
-      });
-      renderer.setSize(container.width, container.height);
-      renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1;
-      canvasDiv.current.appendChild(renderer.domElement);
+      let renderer: THREE.WebGLRenderer;
+      try {
+        renderer = new THREE.WebGLRenderer({
+          alpha: true,
+          antialias: true,
+          powerPreference: "high-performance",
+          failIfMajorPerformanceCaveat: false,
+        });
+      } catch (e) {
+        console.error("WebGL renderer initialization failed:", e);
+        setWebglSupported(false);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        renderer.setSize(container.width, container.height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap to 2 for performance
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1;
+        canvasDiv.current.appendChild(renderer.domElement);
+      } catch (e) {
+        console.error("Renderer setup failed:", e);
+        renderer.dispose();
+        setWebglSupported(false);
+        setLoading(false);
+        return;
+      }
 
       const camera = new THREE.PerspectiveCamera(14.5, aspect, 0.1, 1000);
       camera.position.z = 10;
@@ -45,7 +87,8 @@ const Scene = () => {
 
       let headBone: THREE.Object3D | null = null;
       let screenLight: any | null = null;
-      let mixer: THREE.AnimationMixer;
+      let mixer: THREE.AnimationMixer | undefined;
+      let animationId: number | null = null;
 
       const clock = new THREE.Clock();
 
@@ -53,27 +96,32 @@ const Scene = () => {
       let progress = setProgress((value) => setLoading(value));
       const { loadCharacter } = setCharacter(renderer, scene, camera);
 
-      loadCharacter().then((gltf) => {
-        if (gltf) {
-          const animations = setAnimations(gltf);
-          hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
-          mixer = animations.mixer;
-          let character = gltf.scene;
-          setChar(character);
-          scene.add(character);
-          headBone = character.getObjectByName("spine006") || null;
-          screenLight = character.getObjectByName("screenlight") || null;
-          progress.loaded().then(() => {
-            setTimeout(() => {
-              light.turnOnLights();
-              animations.startIntro();
-            }, 2500);
-          });
-          window.addEventListener("resize", () =>
-            handleResize(renderer, camera, canvasDiv, character)
-          );
-        }
-      });
+      loadCharacter()
+        .then((gltf) => {
+          if (gltf && canvasDiv.current) {
+            const animations = setAnimations(gltf);
+            hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
+            mixer = animations.mixer;
+            let character = gltf.scene;
+            setChar(character);
+            scene.add(character);
+            headBone = character.getObjectByName("spine006") || null;
+            screenLight = character.getObjectByName("screenlight") || null;
+            progress.loaded().then(() => {
+              setTimeout(() => {
+                light.turnOnLights();
+                animations.startIntro();
+              }, 2500);
+            });
+            window.addEventListener("resize", () =>
+              handleResize(renderer, camera, canvasDiv, character)
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Failed to load character:", error);
+          setLoading(false);
+        });
 
       let mouse = { x: 0, y: 0 },
         interpolation = { x: 0.1, y: 0.2 };
@@ -81,6 +129,7 @@ const Scene = () => {
       const onMouseMove = (event: MouseEvent) => {
         handleMouseMove(event, (x, y) => (mouse = { x, y }));
       };
+
       let debounce: number | undefined;
       const onTouchStart = (event: TouchEvent) => {
         const element = event.target as HTMLElement;
@@ -98,16 +147,15 @@ const Scene = () => {
         });
       };
 
-      document.addEventListener("mousemove", (event) => {
-        onMouseMove(event);
-      });
+      document.addEventListener("mousemove", onMouseMove);
       const landingDiv = document.getElementById("landingDiv");
       if (landingDiv) {
         landingDiv.addEventListener("touchstart", onTouchStart);
         landingDiv.addEventListener("touchend", onTouchEnd);
       }
+
       const animate = () => {
-        requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
         if (headBone) {
           handleHeadRotation(
             headBone,
@@ -126,33 +174,70 @@ const Scene = () => {
         renderer.render(scene, camera);
       };
       animate();
+
       return () => {
         clearTimeout(debounce);
+        if (animationId !== null) {
+          cancelAnimationFrame(animationId);
+        }
         scene.clear();
         renderer.dispose();
-        window.removeEventListener("resize", () =>
-          handleResize(renderer, camera, canvasDiv, character!)
-        );
-        if (canvasDiv.current) {
-          canvasDiv.current.removeChild(renderer.domElement);
-        }
+        document.removeEventListener("mousemove", onMouseMove);
+        
         if (landingDiv) {
-          document.removeEventListener("mousemove", onMouseMove);
           landingDiv.removeEventListener("touchstart", onTouchStart);
           landingDiv.removeEventListener("touchend", onTouchEnd);
         }
+        
+        if (canvasDiv.current && renderer.domElement.parentNode === canvasDiv.current) {
+          canvasDiv.current.removeChild(renderer.domElement);
+        }
       };
     }
-  }, []);
+  }, [setLoading]);
 
   return (
     <>
-      <div className="character-container">
-        <div className="character-model" ref={canvasDiv}>
-          <div className="character-rim"></div>
-          <div className="character-hover" ref={hoverDivRef}></div>
+      {!webglSupported ? (
+        <div className="character-container">
+          <div className="character-model" style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
+            borderRadius: "8px",
+            color: "#fff",
+            textAlign: "center",
+            padding: "20px",
+            boxSizing: "border-box",
+          }}>
+            <div>
+              <h3 style={{ margin: "0 0 10px 0", fontSize: "18px" }}>
+                3D Model Not Supported
+              </h3>
+              <p style={{
+                margin: 0,
+                fontSize: "14px",
+                opacity: 0.7,
+                lineHeight: "1.5",
+              }}>
+                Your browser doesn't support WebGL. 
+                <br />
+                Check the portfolio gallery below to see the work!
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="character-container">
+          <div className="character-model" ref={canvasDiv}>
+            <div className="character-rim"></div>
+            <div className="character-hover" ref={hoverDivRef}></div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
