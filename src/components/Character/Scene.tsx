@@ -19,7 +19,6 @@ const Scene = () => {
   const sceneRef = useRef(new THREE.Scene());
   const { setLoading } = useLoading();
 
-  const [character, setChar] = useState<THREE.Object3D | null>(null);
   const [webglSupported, setWebglSupported] = useState(true);
 
   // Check WebGL support
@@ -40,7 +39,7 @@ const Scene = () => {
     const hasWebGL = checkWebGLSupport();
     if (!hasWebGL) {
       setWebglSupported(false);
-      setLoading(false);
+      setLoading(100); // Mark as complete with error state
       return;
     }
 
@@ -61,7 +60,7 @@ const Scene = () => {
       } catch (e) {
         console.error("WebGL renderer initialization failed:", e);
         setWebglSupported(false);
-        setLoading(false);
+        setLoading(100);
         return;
       }
 
@@ -75,7 +74,7 @@ const Scene = () => {
         console.error("Renderer setup failed:", e);
         renderer.dispose();
         setWebglSupported(false);
-        setLoading(false);
+        setLoading(100);
         return;
       }
 
@@ -102,8 +101,7 @@ const Scene = () => {
             const animations = setAnimations(gltf);
             hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
             mixer = animations.mixer;
-            let character = gltf.scene;
-            setChar(character);
+            const character = gltf.scene;
             scene.add(character);
             headBone = character.getObjectByName("spine006") || null;
             screenLight = character.getObjectByName("screenlight") || null;
@@ -120,7 +118,7 @@ const Scene = () => {
         })
         .catch((error) => {
           console.error("Failed to load character:", error);
-          setLoading(false);
+          setLoading(100);
         });
 
       let mouse = { x: 0, y: 0 },
